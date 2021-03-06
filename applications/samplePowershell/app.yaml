@@ -1,5 +1,6 @@
 application:
   appName: "SampleApp"
+  displayVersion: ""
   publisher: "Powers-Hell"
   description: 'This sample app will simple leave a file on your computer. Very exciting'
   appUrl: ""

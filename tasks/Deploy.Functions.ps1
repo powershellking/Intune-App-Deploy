@@ -334,6 +334,10 @@ function Get-Win32AppBody {
 
         [parameter(Mandatory = $true)]
         [ValidateNotNullOrEmpty()]
+        [string]$displayVersion,
+
+        [parameter(Mandatory = $true)]
+        [ValidateNotNullOrEmpty()]
         [string]$publisher,
 
         [parameter(Mandatory = $true)]
@@ -411,6 +415,7 @@ function Get-Win32AppBody {
         $body.description = $description
         $body.developer = ""
         $body.displayName = $displayName
+        $body.displayVersion = $displayVersion
         $body.fileName = $filename
         $body.installCommandLine = "msiexec /i `"$SetupFileName`""
         $body.installExperience = @{"runAsAccount" = "$installExperience" }
@@ -438,6 +443,7 @@ function Get-Win32AppBody {
         $body.description = $description
         $body.developer = ""
         $body.displayName = $displayName
+        $body.displayVersion = $displayVersion
         $body.fileName = $filename
         $body.installCommandLine = "$installCommandLine"
         $body.installExperience = @{"runAsAccount" = "$installExperience" }
@@ -457,6 +463,7 @@ function Get-Win32AppBody {
         $body.description = $description
         $body.developer = ""
         $body.displayName = $displayName
+        $body.displayVersion = $displayVersion
         $body.fileName = $filename
         $body.installCommandLine = "Powershell.exe -executionPolicy bypass -file './$SetupFileName'"
         $body.installExperience = @{"runAsAccount" = "$installExperience" }
@@ -721,6 +728,10 @@ function Publish-Win32Lob {
         [ValidateNotNullOrEmpty()]
         [string]$displayName,
 
+        [parameter(Mandatory = $false)]
+        [ValidateNotNullOrEmpty()]
+        [string]$displayVersion,
+
         [parameter(Mandatory = $true, Position = 2)]
         [ValidateNotNullOrEmpty()]
         [string]$publisher,
@@ -793,6 +804,7 @@ function Publish-Win32Lob {
             $mobileAppParams = @{
                 MSI               = $true
                 displayName       = "$DisplayName"
+                displayVersion    = $displayVersion
                 publisher         = "$publisher"
                 description       = $description
                 filename          = $FileName
@@ -817,6 +829,7 @@ function Publish-Win32Lob {
             $mobileAppParams = @{
                 EXE                  = $true
                 displayName          = $displayName
+                displayVersion       = $displayVersion
                 publisher            = $publisher
                 description          = $description
                 filename             = $fileName
